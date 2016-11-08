@@ -21,10 +21,11 @@ namespace DAL2
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                string strSql = @"select * from JenisMotor
-                                 order by NamaJenisMotor asc";
-                var result = conn.Query<JenisMotor>(strSql);
-                return result;
+                string strSql = @"select * from JenisMotor 
+                                  order by NamaJenisMotor asc";
+
+                var results = conn.Query<JenisMotor>(strSql);
+                return results;
             }
         }
     }
