@@ -19,24 +19,55 @@ namespace SampleBackEndProgmob.Controllers
         }
 
         // GET: api/JenisMotor/5
-        public string Get(int id)
+        public JenisMotor Get(int id)
         {
-            return "value";
+            JenisMotorDAL jenisMotorDAL = new JenisMotorDAL();
+            return jenisMotorDAL.GetById(id);
         }
 
         // POST: api/JenisMotor
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post(JenisMotor jnsmotor)
         {
+            JenisMotorDAL jenisMotorDAL = new JenisMotorDAL();
+            try
+            {
+                jenisMotorDAL.Create(jnsmotor);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT: api/JenisMotor/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(JenisMotor jnsmotor)
         {
+            JenisMotorDAL jenisMotorDAL = new JenisMotorDAL();
+            try
+            {
+                jenisMotorDAL.Update(jnsmotor);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // DELETE: api/JenisMotor/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            JenisMotorDAL jenisMotorDAL = new JenisMotorDAL();
+            try
+            {
+                jenisMotorDAL.Delete(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
