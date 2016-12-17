@@ -29,7 +29,7 @@ namespace DAL2
             }
         }
 
-        public Barang GetById(int KodeBarang)
+        public IEnumerable<Barang> GetById(int KodeBarang)
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
@@ -40,7 +40,7 @@ namespace DAL2
                 {
                     KodeBarang = KodeBarang
                 };
-                return conn.Query<Barang>(strSql, par).SingleOrDefault();
+                return conn.Query<Barang>(strSql, par);
             }
         }
 
@@ -137,6 +137,22 @@ namespace DAL2
 
                 var results = conn.Query<Barang>(strSql, par);
                 return results;
+            }
+        }
+
+
+        public IEnumerable<BarangVM> SearchByKategori(string namaKategori)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                string strsql = @"select KodeBarang, Nama, Stok, HargaBeli, HargaJual, TanggalBeli, NamaKategori from Barang, Kategori
+                                where Barang.IdKategori = Kategori.IdKategori and NamaKategori like @NamaKategori";
+                var par = new
+                {
+                    NamaKategori = "%" + namaKategori + "%"
+                };
+
+                return conn.Query<BarangVM>(strsql, par);
             }
         }
 

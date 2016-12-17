@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Barang.cs" />
+    <Compile Include="BarangVM.cs" />
     <Compile Include="JenisMotor.cs" />
     <Compile Include="Kategori.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

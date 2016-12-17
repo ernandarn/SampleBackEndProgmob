@@ -20,7 +20,7 @@ namespace SampleBackEndProgmob.Controllers
         }
 
         // GET: api/Barang/5
-        public Barang Get(int id)
+        public IEnumerable<Barang> Get(int id)
         {
             BarangDAL barangDAL = new BarangDAL();
             return barangDAL.GetById(id);
@@ -71,10 +71,16 @@ namespace SampleBackEndProgmob.Controllers
             }
         }
 
-        public IEnumerable<Barang> Get(string nama)
+        public IEnumerable<Barang> GetNama(string nama)
         {
             BarangDAL brg = new BarangDAL();
             return brg.SearchByName(nama);
+        }
+
+        public IEnumerable<BarangVM> Get(string namaKategori)
+        {
+            BarangDAL brg = new BarangDAL();
+            return brg.SearchByKategori(namaKategori);
         }
 
     }
